@@ -1,3 +1,9 @@
 $(document).ready(function() {
-   // $("IMG") 
+    $('img').on({
+    'click': function(){
+        $(this).attr('src','images/ace-spades.png');
+    }
 });
+});
+
+
