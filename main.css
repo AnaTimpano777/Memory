@@ -1,0 +1,41 @@
+.match {
+    border: 4px lightgreen solid;
+    border-radius: 7px;
+    
+    animation-name:winpulse;
+    animation-duration:.1s;
+    animation-iteration-count:6;
+}
+
+@keyframes winpulse {
+    from{border-color: aquamarine;}
+    to {border-color: lightgreen;}
+}
+
+IMG {
+    padding:5px; 
+ }
+
+.fail {
+    border: 4px crimson solid;
+    border-radius: 7px;
+    
+    animation-name:failpulse;
+    animation-duration:.1s;
+    animation-iteration-count:6;
+}
+
+@keyframes failpulse {
+    from{border-color: deeppink;}
+    to {border-color: darkred;}
+}
+
+#field > DIV {
+    height: 180px;   
+}
+
+#yay {
+    position: absolute;
+    top: 50px;
+    left: 20%;
+}

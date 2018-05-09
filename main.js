@@ -1,21 +1,64 @@
+var cards = new Array();
+
+cards[0] = "images/ace-spades.png";
+cards[1] = "images/ace-spades.png";
+cards[2] = "images/two-spades.png";
+cards[3] = "images/two-spades.png";
+cards[4] = "images/three-spades.png";
+cards[5] = "images/three-spades.png";
+cards[6] = "images/four-spades.png";
+cards[7] = "images/four-spades.png";
+cards[8] = "images/five-spades.png";
+cards[9] = "images/five-spades.png";
+cards[10] = "images/six-spades.png";
+cards[11] = "images/six-spades.png";
+
+//cards = shuffle(cards);
+
+$('#field IMG').each(function(counter) {
+    $(this).data('card', cards[counter])
+    
+    $(this).attr('src',$(this).data('card'));
+});
+
+  setTimeout(function() {
+                    $('#field IMG').attr('src','images/back.png');
+                },2000);
+
 $(document).ready(function() {
-    $('img').on({
+    $('#field img').on({
     'click': function(){
         $(this).attr('src',$(this).data('card'));
         $(this).addClass('flipped');
         if($('.flipped').length > 1) {
             if($('.flipped').eq(0).data('card') == $('.flipped').eq(1).data('card')) {
-                alert('You have matched the cards you lucky duck!');   
-                //remove from field
+                 $('.flipped').addClass('match');
+                setTimeout(function() {
+                    $(".flipped").hide();
+                    $('.flipped').removeClass('flipped');
+                    checkWin();
+                },600);
             }
             else {
-                alert('You clicked the wrong one.... Click the right one next time!');    
-                //flip back over
+                  $('.flipped').addClass('fail');
+                setTimeout(function() {  
+                    $('#field IMG').attr('src','images/back.png');
+                    $('.flipped').removeClass('fail');
+                    $('.flipped').removeClass('flipped');
+                },600);
              }
+            
         }
     }
 });
 });
+
+function checkWin() {
+    if($('#field IMG:visible').length == 0) {
+        alert('YOU WON!!!');   
+    }
+}
+
     
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
@@ -36,7 +79,7 @@ function shuffle(array) {
   return array;
 }
 
-//
+//add an image in the center of the screen and make it hide at the start and appear once you have one
 
 
 
