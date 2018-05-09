@@ -34,8 +34,18 @@ IMG {
     height: 180px;   
 }
 
-#yay {
+#win {
     position: absolute;
     top: 50px;
-    left: 20%;
+    left: 29%;
+}
+
+body {
+  text-align: center;
+  font-family: fantasy;
+}
+
+#refresh {
+       text-align: center;
+        font-family: cursive;
 }

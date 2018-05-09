@@ -13,12 +13,14 @@ cards[9] = "images/five-spades.png";
 cards[10] = "images/six-spades.png";
 cards[11] = "images/six-spades.png";
 
-//cards = shuffle(cards);
+cards = shuffle(cards);
 
 $('#field IMG').each(function(counter) {
     $(this).data('card', cards[counter])
     
     $(this).attr('src',$(this).data('card'));
+    $("#win").hide();
+    $("#refresh").hide();
 });
 
   setTimeout(function() {
@@ -54,8 +56,10 @@ $(document).ready(function() {
 });
 
 function checkWin() {
-    if($('#field IMG:visible').length == 0) {
-        alert('YOU WON!!!');   
+    if($('#field IMG:visible').length == 0) {  
+        $("#win").show();
+        $("#refresh").show();
+        
     }
 }
 
@@ -78,8 +82,9 @@ function shuffle(array) {
 
   return array;
 }
-
+//Add matching words
 //add an image in the center of the screen and make it hide at the start and appear once you have one
+//Instead of hiding the cards when they are matched replace it with a shiloutte of the card
 
 
 
