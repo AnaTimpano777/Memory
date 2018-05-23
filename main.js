@@ -13,23 +13,14 @@ cards[9] = "images/five-spades.png";
 cards[10] = "images/six-spades.png";
 cards[11] = "images/six-spades.png";
 
-cards = shuffle(cards);
-
-$('#field IMG').each(function(counter) {
-    $(this).data('card', cards[counter])
-    
-    $(this).attr('src',$(this).data('card'));
-    $("#win").hide();
-    $("#refresh").hide();
-});
-
-  setTimeout(function() {
-                    $('#field IMG').attr('src','images/back.png');
-                },2000);
+resetField();
 
 $(document).ready(function() {
     $('#field img').on({
     'click': function(){
+         if($('.flipped').length > 1) {
+            return false;   
+         }
         $(this).attr('src',$(this).data('card'));
         $(this).addClass('flipped');
         if($('.flipped').length > 1) {
@@ -58,11 +49,36 @@ $(document).ready(function() {
 function checkWin() {
     if($('#field IMG:visible').length == 0) {  
         $("#win").show();
-        $("#refresh").show();
-        
+        setTimeout(function() {
+            if(confirm('Do you want to play again?')) {
+                resetField();   
+            }
+        },2500);
     }
 }
 
+function resetField() {
+    $("#win").hide();
+    $("#field IMG").show();
+    $('.flipped').removeClass('flipped');
+    $("#field IMG").attr('src','images/back.png');
+    $("#field IMG").removeClass('match');
+    
+   cards = shuffle(cards);
+
+$('#field IMG').each(function(counter) {
+    $(this).data('card', cards[counter])
+    
+    $(this).attr('src',$(this).data('card'));
+    $("#refresh").hide();
+});
+
+  setTimeout(function() {
+                    $('#field IMG').attr('src','images/back.png');
+                },2000);
+
+    
+}
     
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
@@ -82,9 +98,6 @@ function shuffle(array) {
 
   return array;
 }
-//Add matching words
-//add an image in the center of the screen and make it hide at the start and appear once you have one
-//Instead of hiding the cards when they are matched replace it with a shiloutte of the card
 
 
 
