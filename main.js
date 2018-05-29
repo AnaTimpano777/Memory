@@ -1,3 +1,4 @@
+var score = 0;
 var cards = new Array();
 
 cards[0] = "images/ace-spades.png";
