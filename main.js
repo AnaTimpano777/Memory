@@ -27,7 +27,8 @@ $(document).ready(function() {
             if($('.flipped').eq(0).data('card') == $('.flipped').eq(1).data('card')) {
                  $('.flipped').addClass('match');
                 setTimeout(function() {
-                    $(".flipped").hide();
+                    $('.flipped').attr('src','images/silhouette.png');
+                    $('.flipped').removeClass('match');
                     $('.flipped').removeClass('flipped');
                     checkWin();
                 },600);
@@ -35,7 +36,7 @@ $(document).ready(function() {
             else {
                   $('.flipped').addClass('fail');
                 setTimeout(function() {  
-                    $('#field IMG').attr('src','images/back.png');
+                    $('#field IMG').not('[src="images/silhouette.png"]').attr('src','images/back.png');
                     $('.flipped').removeClass('fail');
                     $('.flipped').removeClass('flipped');
                 },600);
@@ -47,8 +48,10 @@ $(document).ready(function() {
 });
 
 function checkWin() {
-    if($('#field IMG:visible').length == 0) {  
+    if($('#field IMG').not('[src="images/silhouette.png"]').length == 0) {  
         $("#win").show();
+        $("#disco").show();
+        $('[src="images/silhouette.png"]').hide();
         setTimeout(function() {
             if(confirm('Do you want to play again?')) {
                 resetField();   
@@ -58,7 +61,9 @@ function checkWin() {
 }
 
 function resetField() {
+    $('[src="images/silhouette.png"]').show();
     $("#win").hide();
+    $("#disco").hide();
     $("#field IMG").show();
     $('.flipped').removeClass('flipped');
     $("#field IMG").attr('src','images/back.png');
