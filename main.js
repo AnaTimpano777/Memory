@@ -17,6 +17,9 @@ cards[11] = "images/six-spades.png";
 resetField();
 
 $(document).ready(function() {
+    if(localStorage.score != undefined) {
+        
+    }
     $('#field img').on({
     'click': function(){
          if($('.flipped').length > 1) {
@@ -51,7 +54,7 @@ $(document).ready(function() {
 function checkWin() {
     if($('#field IMG').not('[src="images/silhouette.png"]').length == 0) {  
         $("#win").show();
-        $("#disco").show();
+        $('BODY').addClass('confetti');
         $('[src="images/silhouette.png"]').hide();
         score++;
         $('#score').text(score);
@@ -66,13 +69,13 @@ function checkWin() {
 function resetField() {
     $('[src="images/silhouette.png"]').show();
     $("#win").hide();
-    $("#disco").hide();
+    $('BODY').removeClass('confetti');
     $("#field IMG").show();
     $('.flipped').removeClass('flipped');
     $("#field IMG").attr('src','images/back.png');
     $("#field IMG").removeClass('match');
     
-   cards = shuffle(cards);
+   //cards = shuffle(cards);
 
 $('#field IMG').each(function(counter) {
     $(this).data('card', cards[counter])

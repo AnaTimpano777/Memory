@@ -45,11 +45,7 @@ body {
   font-family: fantasy;
 }
 
-#disco {
-    position: absolute;
-    top: 0px;
-    left: 40%;
-    height: 50%
-    
+.confetti {
+    background:url('Images/giphy.gif');   
 }
 
