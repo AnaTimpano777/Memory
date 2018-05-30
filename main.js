@@ -18,7 +18,8 @@ resetField();
 
 $(document).ready(function() {
     if(localStorage.score != undefined) {
-        
+        score = localStorage.score;
+        $('#score').text(score);
     }
     $('#field img').on({
     'click': function(){
@@ -57,6 +58,7 @@ function checkWin() {
         $('BODY').addClass('confetti');
         $('[src="images/silhouette.png"]').hide();
         score++;
+        localStorage.score = score;
         $('#score').text(score);
         setTimeout(function() {
             if(confirm('Do you want to play again?')) {
@@ -75,7 +77,7 @@ function resetField() {
     $("#field IMG").attr('src','images/back.png');
     $("#field IMG").removeClass('match');
     
-   //cards = shuffle(cards);
+   cards = shuffle(cards);
 
 $('#field IMG').each(function(counter) {
     $(this).data('card', cards[counter])
@@ -110,5 +112,10 @@ function shuffle(array) {
   return array;
 }
 
+//add border and make it stay, woop woop
+//Reset the score (button)
+//Once you click a card and it is flipped after a few seconds make it turn back to back.png
+//Have a person enter there name and remember their individual score attached to their name
+// localStorage.name = prompt('What is thy name?');
 
 
