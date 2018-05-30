@@ -53,6 +53,8 @@ function checkWin() {
         $("#win").show();
         $("#disco").show();
         $('[src="images/silhouette.png"]').hide();
+        score++;
+        $('#score').text(score);
         setTimeout(function() {
             if(confirm('Do you want to play again?')) {
                 resetField();   
